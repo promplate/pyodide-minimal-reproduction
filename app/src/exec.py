@@ -13,7 +13,7 @@ from pyodide.ffi import to_js
 if TYPE_CHECKING:
     sources: dict[str, str] = {}
 
-    REPODATA_PACKAGES: dict[str, dict] = {}
+    LOCKFILE_PACKAGES: dict[str, dict] = {}
 
     async def load_packages_from_imports(source: str): ...
 
@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 else:
     import pyodide_js
 
-    REPODATA_PACKAGES = pyodide_js._api.repodata_packages.to_py()
+    LOCKFILE_PACKAGES = pyodide_js._api.lockfile_packages.to_py()
     load_packages_from_imports = pyodide_js.loadPackagesFromImports
 
 
@@ -77,7 +77,7 @@ def formattraceback(e: BaseException) -> str:
 
 @cache
 def build_reversed_index() -> dict[str, tuple[str, str]]:
-    return {import_name: (package_name, info["version"]) for package_name, info in REPODATA_PACKAGES.items() for import_name in info["imports"]}
+    return {import_name: (package_name, info["version"]) for package_name, info in LOCKFILE_PACKAGES.items() for import_name in info["imports"]}
 
 
 def get_install_name(import_name: str):
