@@ -116,7 +116,7 @@ jobs:
         working-directory: app
         run: pnpm install --prod && pnpm build
       - name: Upload pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: app/build
       - name: Deploy
