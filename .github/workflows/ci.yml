@@ -49,7 +49,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v6
         with:
-          node-version: 22.x
+          node-version: 24.x
 
       - name: Install dependencies
         working-directory: app
@@ -111,7 +111,7 @@ jobs:
           version: latest
       - uses: actions/setup-node@v6
         with:
-          node-version: 22.x
+          node-version: 24.x
       - name: Build static site
         working-directory: app
         run: pnpm install --prod && pnpm build
