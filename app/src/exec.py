@@ -66,11 +66,7 @@ def num_frames_to_keep(tb: TracebackType | None) -> int:
     return kept_frames
 
 
-def formattraceback(e: BaseException) -> str:
-    """Format the exception that just occurred.
-
-    The actual error object is stored into :py:data:`sys.last_value`.
-    """
+def formattraceback(e: BaseException):
     nframes = num_frames_to_keep(e.__traceback__)
     return "".join(format_exception(type(e), e, e.__traceback__, -nframes))
 
